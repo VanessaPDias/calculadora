@@ -1,0 +1,53 @@
+body {
+    background-color: #49274A;
+}
+
+.box {
+    background-color: #94618E;
+    border-radius: 8px;
+    border: 1px solid #49274A;
+    margin-top: 8%;
+}
+
+#retorno-tela {
+    color:#F8EEE7;
+    text-align: end;
+    padding-top: 10px;
+}
+
+#visor {
+    background-color:#F8EEE7;
+    border: 1px solid #49274A;
+    color: #49274A;
+    font-size: 2rem;
+}
+
+
+.estilo {
+    border: 1px solid #49274A;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #F8EEE7;
+    height: 60px;
+    cursor: pointer;
+}
+
+div.estilo:hover {
+    background-color: #49274A;
+}
+
+.borda-top-esquerda {
+    border-radius: 8px 0px 0px 0px;
+}
+
+.borda-top-direita {
+    border-radius: 0px 8px 0px 0px;
+}
+
+.borda-bottom-esquerda {
+    border-radius: 0px 0px 0px 8px;
+}
+
+.borda-bottom-direita {
+    border-radius: 0px 0px 8px 0px;
+}

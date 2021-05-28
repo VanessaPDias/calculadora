@@ -23,9 +23,10 @@ function aoCarregarPagina () {
 };
 
 function numClicado(evt) {
-    if(document.querySelector('#visor').value == 0){
+    if(document.querySelector('#visor').value == '0' || document.querySelector('#visor').value != ''){
         valores = "";
         document.querySelector('#visor').value = "";
+        document.querySelector('#retorno-tela').innerHTML = valores;
     };
 
     let valorElemento = evt.target.innerHTML;
@@ -37,11 +38,13 @@ function numClicado(evt) {
 function opClicado(evt) {
     let numero = document.querySelector('#visor').value;
     let operador = evt.target.innerHTML;
-
+    
     if(numero == "") {
         valores = "";
         return;
     };
+
+
 
     document.querySelector('#visor').value = "";
 
@@ -54,14 +57,9 @@ function opClicado(evt) {
 function calcular(evt) {
     let numero = document.querySelector('#visor').value;
     let operador = evt.target.innerHTML;
-
-    if(numero == "") {
-        valores = "";
-        return;
-    };
     
     valores = `${valores} ${numero}`;
-    
+
     document.querySelector('#retorno-tela').innerHTML = `${valores} ${operador}`;
     
     document.querySelector('#visor').value = eval(valores);
@@ -72,6 +70,11 @@ function calcular(evt) {
 
 function calcularPorcentagem() {
     let numero = document.querySelector('#visor').value;
+
+    if(numero == '0') {
+        valores = "";
+        return;
+    };
     
     valores = `${valores} (${numero} / 100)`;
 
@@ -81,7 +84,7 @@ function calcularPorcentagem() {
 }; 
 
 function limpar(){
-    document.querySelector('#visor').value = "";
+    document.querySelector('#visor').value = '0';
     document.querySelector('#retorno-tela').innerHTML = "";
     valores = "";
 };

@@ -136,7 +136,7 @@ function limpar() {
 
 
 function excluirDigito() {
-    let numero = document.querySelector('#visor').value;
+    let numero = pegarValorDoVisor();
     numero = numero.slice(0, -1);
     document.querySelector('#visor').value = numero;
 };
@@ -145,10 +145,13 @@ function excluirDigito() {
 function inverterSinal() {
     let numero = pegarValorDoVisor();
     numero = numero * -1;
-    document.querySelector('#visor').value = numero;
+    escreverNoVisor(numero);
 }
 
 function pegarValorDoVisor() {
     return document.querySelector('#visor').value;
 }
 
+function escreverNoVisor(valor) {
+    document.querySelector('#visor').value = valor;
+}

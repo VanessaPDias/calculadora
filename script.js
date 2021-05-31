@@ -38,26 +38,32 @@ function numClicado(evt) {
         valores = "";
         calculoFeito = false;
     };
-    console.log(4, valores)
+    
     let valorElemento = evt.target.innerHTML;
     let valorRetornado = document.querySelector('#visor').value += valorElemento;
-    console.log(5, valores)
+   
 };
 
 function opClicado(evt) {
-    console.log(6, valores)
+    
     let numero = document.querySelector('#visor').value;
-    let operador = evt.target.innerHTML;
-
+    
     if (numero == "") {
         valores = "";
         return;
     };
-    console.log(7, valores)
+
+    if(numero == '0'){
+        valores = "";
+        numero = 0
+    };
+    
+    let operador = evt.target.innerHTML;
+    
     document.querySelector('#visor').value = "";
     valores = `${valores} ${numero} ${operador}`;
     document.querySelector('#retorno-tela').innerHTML = valores;
-    console.log(8, valores)
+    
     calculoFeito = false;
 };
 
@@ -65,6 +71,17 @@ function opClicado(evt) {
 function calcular(evt) {
     calculoFeito = true;
     let numero = document.querySelector('#visor').value;
+    if(numero == '0'){
+        valores = "";
+        numero = 0;
+    };
+
+    if(numero == "") {
+        valores = "";
+        return;
+    };
+
+
     let operador = evt.target.innerHTML;
 
     valores = `${valores} ${numero}`;
@@ -73,7 +90,7 @@ function calcular(evt) {
     valores = "";
 };
 
-console.log(0, valores)
+
 function adicionarPonto() {
     let numero = document.querySelector('#visor').value;
 
@@ -126,8 +143,12 @@ function excluirDigito() {
 
 
 function inverterSinal() {
-    let numero = document.querySelector('#visor').value;
+    let numero = pegarValorDoVisor();
     numero = numero * -1;
     document.querySelector('#visor').value = numero;
-};
+}
+
+function pegarValorDoVisor() {
+    return document.querySelector('#visor').value;
+}
 

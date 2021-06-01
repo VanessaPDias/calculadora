@@ -94,16 +94,19 @@ function calcular(evt) {
 function adicionarPonto() {
     let numero = document.querySelector('#visor').value;
 
-    if(numero == '0') {
+    if(numero.indexOf('.') !== -1) {
+        return;
+    }else if(numero == '0') {
         valores = "";
         document.querySelector('#visor').value = `0.`;
     }else if(numero == ""){
         document.querySelector('#visor').value = `0.`;
-    }
-    else {
+    }else if(numero.endsWith('.')){
+        return;
+    }else {
         document.querySelector('#visor').value = `${numero}.`;
-        
     }
+
 
     calculoFeito = false;
     console.log(1, numero)
@@ -143,9 +146,9 @@ function excluirDigito() {
 
 
 function inverterSinal() {
-    let numero = pegarValorDoVisor();
+    let numero = visor.pegarValor();
     numero = numero * -1;
-    escreverNoVisor(numero);
+    visor.escreverValor(numero);
 }
 
 function pegarValorDoVisor() {

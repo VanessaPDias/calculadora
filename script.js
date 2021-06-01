@@ -25,28 +25,40 @@ function aoCarregarPagina() {
 let valores = "0";
 let calculoFeito = false;
 
+function pegarValorDoVisor() {
+    return document.querySelector('#visor').value;
+}
+
+function escreverNoVisor(valor) {
+    document.querySelector('#visor').value = valor;
+}
+
+function escreverExpressao(valor) {
+    document.querySelector('#retorno-tela').innerHTML = valor;
+}
+
 function numClicado(evt) {
-    if (document.querySelector('#visor').value == '0') {
+    if (pegarValorDoVisor() == '0') {
         valores = "";
-        document.querySelector('#visor').value = "";
-        document.querySelector('#retorno-tela').innerHTML = valores;
+        escreverNoVisor('');
+        escreverExpressao(valores);
     };
 
     if (calculoFeito == true) {
-        document.querySelector('#visor').value = "";
-        document.querySelector('#retorno-tela').innerHTML = "";
+        escreverNoVisor('');
+        escreverExpressao('');
         valores = "";
         calculoFeito = false;
     };
     
     let valorElemento = evt.target.innerHTML;
-    let valorRetornado = document.querySelector('#visor').value += valorElemento;
+    escreverNoVisor(pegarValorDoVisor() + valorElemento) 
    
 };
 
 function opClicado(evt) {
     
-    let numero = document.querySelector('#visor').value;
+    let numero = pegarValorDoVisor();
     
     if (numero == "") {
         valores = "";
@@ -60,9 +72,9 @@ function opClicado(evt) {
     
     let operador = evt.target.innerHTML;
     
-    document.querySelector('#visor').value = "";
+    escreverNoVisor('');
     valores = `${valores} ${numero} ${operador}`;
-    document.querySelector('#retorno-tela').innerHTML = valores;
+    escreverExpressao(valores);
     
     calculoFeito = false;
 };
@@ -70,7 +82,7 @@ function opClicado(evt) {
 
 function calcular(evt) {
     calculoFeito = true;
-    let numero = document.querySelector('#visor').value;
+    let numero = pegarValorDoVisor();
     if(numero == '0'){
         valores = "";
         numero = 0;
@@ -81,59 +93,54 @@ function calcular(evt) {
         return;
     };
 
-
     let operador = evt.target.innerHTML;
 
     valores = `${valores} ${numero}`;
-    document.querySelector('#retorno-tela').innerHTML = `${valores} ${operador}`;
-    document.querySelector('#visor').value = eval(valores);
+    escreverExpressao(`${valores} ${operador}`);
+    escreverNoVisor(eval(valores));
     valores = "";
 };
 
 
 function adicionarPonto() {
-    let numero = document.querySelector('#visor').value;
+    let numero = pegarValorDoVisor();
 
     if(numero.indexOf('.') !== -1) {
         return;
     }else if(numero == '0') {
         valores = "";
-        document.querySelector('#visor').value = `0.`;
+        escreverNoVisor(`0.`) ;
     }else if(numero == ""){
-        document.querySelector('#visor').value = `0.`;
+        escreverNoVisor(`0.`);
     }else if(numero.endsWith('.')){
         return;
     }else {
-        document.querySelector('#visor').value = `${numero}.`;
+        escreverNoVisor(`${numero}.`);
     }
 
-
     calculoFeito = false;
-    console.log(1, numero)
-    console.log(2, valores)
 };
 
 
-
 function calcularPorcentagem() {
-    let numero = document.querySelector('#visor').value;
+    let numero = pegarValorDoVisor();
 
     if (numero == '0') {
-        document.querySelector('#retorno-tela').innerHTML = valores;
+        escreverExpressao(valores);
         valores = "";
         return;
     };
 
     valores = `${valores} (${numero} / 100)`;
-    document.querySelector('#retorno-tela').innerHTML = valores;
-    document.querySelector('#visor').value = eval(valores);
+    escreverExpressao(valores);
+    escreverNoVisor(eval(valores));
     valores = "";
 };
 
 
 function limpar() {
-    document.querySelector('#visor').value = '0';
-    document.querySelector('#retorno-tela').innerHTML = "";
+    escreverNoVisor('0');
+    escreverExpressao('');
     valores = '0';
 };
 
@@ -141,20 +148,13 @@ function limpar() {
 function excluirDigito() {
     let numero = pegarValorDoVisor();
     numero = numero.slice(0, -1);
-    document.querySelector('#visor').value = numero;
+    escreverNoVisor(numero);
 };
 
 
 function inverterSinal() {
-    let numero = visor.pegarValor();
+    let numero = pegarValorDoVisor();
     numero = numero * -1;
-    visor.escreverValor(numero);
+    escreverNoVisor(numero);
 }
 
-function pegarValorDoVisor() {
-    return document.querySelector('#visor').value;
-}
-
-function escreverNoVisor(valor) {
-    document.querySelector('#visor').value = valor;
-}

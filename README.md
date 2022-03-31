@@ -9,6 +9,9 @@ Conhecimentos aplicados:
 * Métodos - eval, endsWith, indexOf, slice
 
 
+https://icy-stone-029d4a503.1.azurestaticapps.net
+
+
 https://user-images.githubusercontent.com/55095687/143064278-6dd74a7a-ae12-422e-9066-9aa819bb2099.mp4
 
 
